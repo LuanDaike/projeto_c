@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Establishment;
 class RegisterController extends Controller
 {
     /*
@@ -53,6 +53,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'min:11', 'unique:users'],
+            'phone' => ['required', 'string', 'min:10'],
+            'type' => ['required', 'string', 'max:255'],
+            'cnpj' => ['required', 'string', 'min:14', 'unique:establishments'],
+            'endereco' => ['required', 'string', 'max:255'],
+            'telefone' => ['required', 'string', 'min:10'],
+            'nome_fantasia' => ['required', 'string', 'max:255'],
+            'razao_social' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -64,10 +73,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $establishment = Establishment::create([
+        'cnpj' => $data['cnpj'],
+        'nome_fantasia' => $data['nome_fantasia'],
+        'razao_social' => $data['razao_social'],
+        'endereco' => $data['endereco'],
+        'telefone' => $data['telefone'],
+
+      ]);
+
         return User::create([
             'name' => $data['name'],
+            'cpf' => $data['cpf'],
+            'phone' => $data['phone'],
+            'type' => $data['type'],
             'email' => $data['email'],
+            'address' => $data['address'],
             'password' => Hash::make($data['password']),
+            'establishment_id' => $establishment->id,
+
         ]);
     }
 }

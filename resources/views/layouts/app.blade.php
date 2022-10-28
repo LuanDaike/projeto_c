@@ -16,23 +16,23 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body>
+<body style="background-image: url(https://www.itl.cat/pngfile/big/190-1902483_winter-1080p-white-winter-wallpaper-hd.jpg)">
     <div id="app">
           <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000">
           <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
+          <!-- <span class="navbar-toggler-icon"></span> -->
+          <!-- </button> -->
           <div class="d-flex justify-content-end">
           <button class="btn btn-outline-light" type="submit">
           @guest
           @if (Route::has('login'))
-          <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+          <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b></a>
           @endif
           </button>
           <button class="btn btn-outline-light" type="submit">
           @if (Route::has('register'))
-          <a class="nav-link" href="{{ route('register') }}">{{ __('Registre-se') }}</a>
+          <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Registre-se') }}</b></a>
           @endif
           </button>
           @else
@@ -40,19 +40,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-          <a class="nav-link active" href="cardápio">Cardápios</a>
+          <a class="nav-link active" href="{{route('menu.index') }}"><b>Cardápios</b></a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" href="produtos">Produtos</a>
+          <a class="nav-link active" href="{{route('product.index') }}"><b>Produtos</b></a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" href="pedidos">Ver Pedido</a>
+          <a class="nav-link active" href="pedidos"><b>Pedidos</b></a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" href="funcionários">Funcionários</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link active" href="cadastroempresas">Dados da Empresa</a>
+          <a class="nav-link active" href="{{route('user.index') }}"><b>Funcionários</b></a>
           </li>
           </ul>
           <div><form class="d-flex" role="search">
@@ -65,7 +62,7 @@
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           {{ Auth::user()->name }}</a>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ route('layout') }}"
+          <a class="dropdown-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
           {{ __('Logout') }}</a>

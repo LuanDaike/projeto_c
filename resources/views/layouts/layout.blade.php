@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <title>Página Inicial</title>
-  @vite(['resources/js/app.js', 'resources/css/app.css'])
+  @vite(['resources/js/app.js'])
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000">
+<body style="background-image: url(https://www.itl.cat/pngfile/big/190-1902483_winter-1080p-white-winter-wallpaper-hd.jpg)">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-image: url(https://media0.giphy.com/media/Xi2Xu0MejhsUo/200.gif)">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,27 +18,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="cardápio">Cardápios</a>
+            <a class="nav-link active" style="color:black" href="{{route('menu.index') }}"><b>Cardápios</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="produtos">Produtos</a>
+            <a class="nav-link active" style="color:black" href="{{route('product.index') }}"><b>Produtos</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="pedidos">Ver Pedido</a>
+            <a class="nav-link active" style="color:black" href="pedidos"><b>Pedidos</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="funcionários">Funcionários</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="cadastroempresas">Dados da Empresa</a>
+            <a class="nav-link active" style="color:black" href="{{route('user.index') }}"><b>Funcionários</b></a>
           </li>
         </ul>
-        <div><form class="d-flex" role="search">
-          <input class="form-control me-4" type="search" placeholder="Pesquisar" aria-label="Search">
-        </form></div>
       </div>
          <div class="d-flex justify-content-end">
-        <button class="btn btn-outline-light" type="submit">
+        <button class="btn btn-outline-dark" type="submit">
            @guest
                @if (Route::has('login'))
                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

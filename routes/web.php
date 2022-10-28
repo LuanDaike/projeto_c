@@ -14,23 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 route::get('/', function () {
-  return view('login');
+  return view('auth.login');
 });
 Route::get('/MelhorBebida', function () {
     return view('café');
 });
 
 route::get('/café', 'App\Http\Controllers\CafeController@helloworld');
-route::get('/funcionários', 'App\Http\Controllers\FuncionariosController@helloworld');
 route::get('/pedidos', 'App\Http\Controllers\PedidosController@helloworld');
-route::get('/produtos', 'App\Http\Controllers\ProdutosController@helloworld');
-route::get('/visualizaçãodocardápio', 'App\Http\Controllers\VisualizacaoCardapioController@helloworld');
-route::get('/cardápio', 'App\Http\Controllers\CardapioController@helloworld');
-route::get('/cadastroempresas', 'App\Http\Controllers\CadastroEmpresaController@helloworld');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-route::get('/cardápio', function () {
-  return view('cardápio');
+
+route::middleware('auth')->group(function () {
+route::resource('user', App\Http\Controllers\UserController::class);
+route::resource('product', App\Http\Controllers\ProductController::class);
+route::resource('menu', App\Http\Controllers\MenuController::class);
+route::resource('menu.product', App\Http\Controllers\MenuProductController::class)
+        ->only(['store', 'destroy']);
+route::get('/cardapio/{menu}', 'App\Http\Controllers\MenuController@showPublic')->name('menu.public.show');
 });
